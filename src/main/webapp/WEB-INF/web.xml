@@ -25,6 +25,11 @@
 		<servlet-name>VideoConvertidoServlet</servlet-name>
 		<servlet-class>br.com.app.output.VideoConvertido</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>TesteServlet</servlet-name>
+		<servlet-class>br.com.app.testes.Teste</servlet-class>
+	</servlet>
 
 
 	<servlet-mapping>
@@ -41,4 +46,10 @@
 		<servlet-name>IndexServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>TesteServlet</servlet-name>
+		<url-pattern>/teste</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
