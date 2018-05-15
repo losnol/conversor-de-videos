@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
@@ -11,10 +10,6 @@
         based on the recommendations of the Application Developer's Guide.
     </description>
 
-	<servlet>
-		<servlet-name>MainServlet</servlet-name>
-		<servlet-class>br.com.app.index.Main</servlet-class>
-	</servlet>
 
 	<servlet>
 		<servlet-name>IndexServlet</servlet-name>
@@ -33,11 +28,6 @@
 
 
 	<servlet-mapping>
-		<servlet-name>MainServlet</servlet-name>
-		<url-pattern>/teste</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
 		<servlet-name>VideoRawServlet</servlet-name>
 		<url-pattern>/videoraw</url-pattern>
 	</servlet-mapping>
@@ -51,5 +41,4 @@
 		<servlet-name>IndexServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
-
 </web-app>
