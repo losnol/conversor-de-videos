@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +17,10 @@ import com.brightcove.zencoder.client.request.ZencoderCreateJobRequest;
 import com.brightcove.zencoder.client.request.ZencoderOutput;
 import com.brightcove.zencoder.client.response.ZencoderCreateJobResponse;
 import com.brightcove.zencoder.client.response.ZencoderJobDetail;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VideoConvertido extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	private ObjectMapper mapper;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,9 +48,9 @@ public class VideoConvertido extends HttpServlet {
 		} catch (ZencoderClientException e) {
 			e.printStackTrace();
 		}
-		System.out.println("blau");
-		resp.sendRedirect(response.getOutputs().get(0).getUrl());
-		
+		req.setAttribute("urlvideo",response.getOutputs().get(0).getUrl());
+		RequestDispatcher rd = req.getRequestDispatcher("confirmacaovideo.jsp");
+		rd.forward(req, resp);
 		
 		return;
 	}
