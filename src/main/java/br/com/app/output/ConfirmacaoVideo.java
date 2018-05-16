@@ -11,7 +11,6 @@ public class ConfirmacaoVideo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println((String) req.getParameter("urlvideo"));
 		resp.sendRedirect((String) req.getParameter("urlvideo"));
 	}
 

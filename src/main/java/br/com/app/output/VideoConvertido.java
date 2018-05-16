@@ -24,10 +24,10 @@ public class VideoConvertido extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ZencoderClient client = new ZencoderClient("94ae6811636fbf387964c90ef528dffd");
+		ZencoderClient client = new ZencoderClient((String) req.getParameter("ZENCODER_API_KEY"));
 		ZencoderCreateJobRequest job = new ZencoderCreateJobRequest();
-		job.setInput((String) req.getAttribute("link"));
 		System.out.println((String) req.getAttribute("link"));
+		job.setInput((String) req.getAttribute("link"));
 		List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
 
 		ZencoderOutput output1 = new ZencoderOutput();

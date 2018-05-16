@@ -40,6 +40,11 @@
 		<servlet-name>ConfirmacaoVideoServlet</servlet-name>
 		<servlet-class>br.com.app.output.ConfirmacaoVideo</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginAWSServlet</servlet-name>
+		<servlet-class>br.com.app.login.credenciais.LoginAWS</servlet-class>
+	</servlet>
 
 
 	<servlet-mapping>
@@ -70,6 +75,11 @@
 	<servlet-mapping>
 		<servlet-name>ConfirmacaoVideoServlet</servlet-name>
 		<url-pattern>/confirmacaovideo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>LoginAWSServlet</servlet-name>
+		<url-pattern>/loginaws</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

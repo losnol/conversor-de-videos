@@ -18,16 +18,16 @@ public final class servletFileUploadUtils {
 		
 	}
 	
-	public static String uploadAWS_S3(FileItem video, String uuidValue,AmazonS3 s3client) throws IOException {
+	public static String uploadAWS_S3(FileItem video, String uuidValue,AmazonS3 s3client, AWSCred cred) throws IOException {
 		ObjectMetadata om = new ObjectMetadata();
 		om.setContentLength(video.getSize());
 		String ext = FilenameUtils.getExtension(video.getName());
 		String keyName = uuidValue + '.' + ext;
 
-		s3client.putObject(new PutObjectRequest(AWSCred.getS3BucketName(), keyName, video.getInputStream(), om));
-		s3client.setObjectAcl(AWSCred.getS3BucketName(), keyName, CannedAccessControlList.PublicRead);
+		s3client.putObject(new PutObjectRequest(cred.getS3BucketName(), keyName, video.getInputStream(), om));
+		s3client.setObjectAcl(cred.getS3BucketName(), keyName, CannedAccessControlList.PublicRead);
 		 
-		return ("s3://" + AWSCred.getS3BucketName() + "/"  + keyName);
+		return ("s3://" + cred.getS3BucketName() + "/"  + keyName);
 	} 
 
 } 

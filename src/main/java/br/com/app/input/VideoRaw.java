@@ -46,12 +46,16 @@ public class VideoRaw extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.setsetHeadersInfo(resp);
 
+		AWSCred cred = new AWSCred((String) req.getAttribute("UUID_STRING"),
+				(String) req.getParameter("AMAZON_ACCESS_KEY"), (String) req.getParameter("AMAZON_SECRET_KEY"),
+				(String) req.getParameter("S3_BUCKET_NAME"));
+
 		if (!ServletFileUpload.isMultipartContent(req)) {
 			RequestDispatcher rd = req.getRequestDispatcher("error");
 			rd.include(req, resp);
 			return;
 		}
-		
+
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(AWSCred.getThresholdSize());
 
@@ -71,7 +75,7 @@ public class VideoRaw extends HttpServlet {
 			while (iter.hasNext()) {
 				FileItem item = (FileItem) iter.next();
 				if (item.isFormField()) {
-					if (item.getFieldName().equalsIgnoreCase(AWSCred.getUuidString())) {
+					if (item.getFieldName().equalsIgnoreCase(cred.getUuidString())) {
 						uuidValue = item.getString();
 					}
 				}
@@ -80,13 +84,13 @@ public class VideoRaw extends HttpServlet {
 				}
 			}
 
-			BasicAWSCredentials awsCredentials = new BasicAWSCredentials(AWSCred.getAmazonAccessKey(),
-					AWSCred.getAmazonSecretKey());
+			BasicAWSCredentials awsCredentials = new BasicAWSCredentials(cred.getAmazonAccessKey(),
+					cred.getAmazonSecretKey());
 
 			@SuppressWarnings("deprecation")
 			AmazonS3 s3client = new AmazonS3Client(awsCredentials);
 			try {
-				keyName = servletFileUploadUtils.uploadAWS_S3(video, uuidValue, s3client);
+				keyName = servletFileUploadUtils.uploadAWS_S3(video, uuidValue, s3client, cred);
 			} catch (AmazonServiceException ase) {
 				LOGGER.error(uuidValue + ":error:" + ase.getMessage());
 			} catch (AmazonClientException ace) {
@@ -96,10 +100,12 @@ public class VideoRaw extends HttpServlet {
 			LOGGER.error(uuidValue + ":" + ":error: " + ex.getMessage());
 		}
 		LOGGER.info(uuidValue + ":Upload done");
-		req.setAttribute("link",keyName);
+		req.setAttribute("link", keyName);
+		req.setAttribute("ZENCODER_API_KEY", (String) req.getParameter("ZENCODER_API_KEY"));
 		RequestDispatcher rd = req.getRequestDispatcher("videoconvertido");
 		rd.forward(req, resp);
-		return;	} 
+		return;
+	}
 
 	private HttpServletResponse setsetHeadersInfo(HttpServletResponse resp) {
 		resp.setHeader("Access-Control-Allow-Origin", "*");

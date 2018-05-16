@@ -7,7 +7,7 @@
 </head>
 <body>
 	<form action="confirmacaovideo" method="GET">
-		<input type="hidden" name="urlvideo" value= ${urlvideo} >
+		<input type="hidden" name="urlvideo" value=${urlvideo} >
 		<input type="submit" value="Ver o Vídeo" />
 	</form>
 	<form method="get" action="index">
