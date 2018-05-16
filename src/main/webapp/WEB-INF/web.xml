@@ -72,4 +72,5 @@
 		<url-pattern>/confirmacaovideo</url-pattern>
 	</servlet-mapping>
 	
+	
 </web-app>

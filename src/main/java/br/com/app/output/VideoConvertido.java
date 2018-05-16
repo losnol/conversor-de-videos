@@ -16,7 +16,6 @@ import com.brightcove.zencoder.client.model.ContainerFormat;
 import com.brightcove.zencoder.client.request.ZencoderCreateJobRequest;
 import com.brightcove.zencoder.client.request.ZencoderOutput;
 import com.brightcove.zencoder.client.response.ZencoderCreateJobResponse;
-import com.brightcove.zencoder.client.response.ZencoderJobDetail;
 
 public class VideoConvertido extends HttpServlet {
 

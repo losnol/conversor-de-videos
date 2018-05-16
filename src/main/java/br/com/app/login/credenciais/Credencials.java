@@ -5,14 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 
-import br.com.app.testes.MainTeste;
+import br.com.app.index.Index;
 
 public enum Credencials {
 
 	AMAZON_ACCESS_KEY {
 
 		public String toString() {
-			URL url = MainTeste.class.getClassLoader().getResource("credencials"); 
+			URL url = Index.class.getClassLoader().getResource("credencials");
 			BufferedReader reader = null;
 			try {
 				reader = new BufferedReader(new FileReader(url.getPath()));
@@ -37,7 +37,7 @@ public enum Credencials {
 
 	AMAZON_SECRET_KEY {
 		public String toString() {
-			URL url = MainTeste.class.getClassLoader().getResource("credencials");
+			URL url = Index.class.getClassLoader().getResource("credencials");
 			BufferedReader reader = null;
 			try {
 				reader = new BufferedReader(new FileReader(url.getPath()));
@@ -66,7 +66,7 @@ public enum Credencials {
 
 	S3_BUCKET_NAME {
 		public String toString() {
-			URL url = MainTeste.class.getClassLoader().getResource("credencials");
+			URL url = Index.class.getClassLoader().getResource("credencials");
 			BufferedReader reader = null;
 			try {
 				reader = new BufferedReader(new FileReader(url.getPath()));
