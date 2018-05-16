@@ -40,18 +40,14 @@ public class VideoConvertido extends HttpServlet {
 
 		job.setOutputs(outputs);
 		ZencoderCreateJobResponse response = null;
-		ZencoderJobDetail details = null;
 		try {
 			response = client.createZencoderJob(job);
-			String jobId = response.getId();
-			details = client.getZencoderJob(jobId);
 		} catch (ZencoderClientException e) {
 			e.printStackTrace();
 		}
 		req.setAttribute("urlvideo",response.getOutputs().get(0).getUrl());
 		RequestDispatcher rd = req.getRequestDispatcher("confirmacaovideo.jsp");
 		rd.forward(req, resp);
-		
 		return;
 	}
 

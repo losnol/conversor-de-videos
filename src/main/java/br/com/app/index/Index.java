@@ -22,4 +22,3 @@ public class Index extends HttpServlet {
 		doGet(req, resp);
 	}
 } 
- 
