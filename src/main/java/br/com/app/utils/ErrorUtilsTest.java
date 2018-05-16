@@ -13,5 +13,4 @@ public class ErrorUtilsTest {
 		String file = "error.html";
 		assertTrue(FileUtils.dirHaveFile(file, path));
 	}
-
 }

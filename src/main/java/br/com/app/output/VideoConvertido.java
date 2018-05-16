@@ -20,7 +20,7 @@ import com.brightcove.zencoder.client.response.ZencoderJobDetail;
 
 public class VideoConvertido extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

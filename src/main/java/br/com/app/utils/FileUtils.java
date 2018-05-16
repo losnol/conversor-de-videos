@@ -22,20 +22,18 @@ public class FileUtils {
 		}
 
 		for (Path filePath : dirStream) {
-
 			String filename = filePath.getFileName().toString();
 			boolean fileFound = FilenameUtils.wildcardMatch(filename, file);
 			if (fileFound) {
 				return true;
 			}
 		}
-
+		
 		try {
 			dirStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return false;
-
 	}
 }

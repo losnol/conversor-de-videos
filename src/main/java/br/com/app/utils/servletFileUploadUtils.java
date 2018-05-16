@@ -15,7 +15,6 @@ import br.com.app.login.credenciais.Credencials;
 public final class servletFileUploadUtils {
 
 	private servletFileUploadUtils() {
-
 	}
 
 	public static String uploadAWS_S3(FileItem video, String uuidValue, AmazonS3 s3client) throws IOException {
@@ -30,5 +29,4 @@ public final class servletFileUploadUtils {
 
 		return ("s3://" + Credencials.S3_BUCKET_NAME.toString() + "/" + keyName);
 	}
-
 }

@@ -52,5 +52,5 @@ public class VideoRawTest {
 		String path = (FilenameUtils.normalize(System.getProperty("user.dir") + "/src/main/webapp/"));
 		String file = "error.html";
 		assertTrue(FileUtils.dirHaveFile(file, path));
-	}
+	} 
 }

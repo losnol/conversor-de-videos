@@ -12,7 +12,7 @@ public enum Credencials {
 	AMAZON_ACCESS_KEY {
 
 		public String toString() {
-			URL url = MainTeste.class.getClassLoader().getResource("credencials");
+			URL url = MainTeste.class.getClassLoader().getResource("credencials"); 
 			BufferedReader reader = null;
 			try {
 				reader = new BufferedReader(new FileReader(url.getPath()));

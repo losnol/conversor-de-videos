@@ -13,6 +13,6 @@ public class IndexTest {
 	public void haveIndex() {
 		String path = (FilenameUtils.normalize(System.getProperty("user.dir") + "/src/main/webapp/"));
 		String file = "index.html";
-		assertTrue(FileUtils.dirHaveFile(file, path));
+		assertTrue(FileUtils.dirHaveFile(file, path)); 
 	}
 }
