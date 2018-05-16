@@ -27,7 +27,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 
-import br.com.app.login.credenciais.AWSCred;
+import br.com.app.login.credenciais.Credencials;
+import br.com.app.login.credenciais.S3Sizes;
 import br.com.app.utils.servletFileUploadUtils;
 
 @MultipartConfig
@@ -53,11 +54,11 @@ public class VideoRaw extends HttpServlet {
 		}
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setSizeThreshold(AWSCred.getThresholdSize());
+		factory.setSizeThreshold(S3Sizes.THRESHOLD_SIZE.getSizeValue());
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
-		upload.setFileSizeMax(AWSCred.getMaxFileSize());
-		upload.setSizeMax(AWSCred.getMaxRequestSize());
+		upload.setFileSizeMax(S3Sizes.MAX_FILE_SIZE.getSizeValue());
+		upload.setSizeMax(S3Sizes.MAX_REQUEST_SIZE.getSizeValue());
 
 		String uuidValue = "";
 		FileItem video = null;
@@ -71,7 +72,7 @@ public class VideoRaw extends HttpServlet {
 			while (iter.hasNext()) {
 				FileItem item = (FileItem) iter.next();
 				if (item.isFormField()) {
-					if (item.getFieldName().equalsIgnoreCase(AWSCred.getUuidString())) {
+					if (item.getFieldName().equalsIgnoreCase("uuid")) {
 						uuidValue = item.getString();
 					}
 				}
@@ -80,8 +81,8 @@ public class VideoRaw extends HttpServlet {
 				}
 			}
 
-			BasicAWSCredentials awsCredentials = new BasicAWSCredentials(AWSCred.getAmazonAccessKey(),
-					AWSCred.getAmazonSecretKey());
+			BasicAWSCredentials awsCredentials = new BasicAWSCredentials(Credencials.AMAZON_ACCESS_KEY.toString(),
+					Credencials.AMAZON_SECRET_KEY.toString());
 
 			@SuppressWarnings("deprecation")
 			AmazonS3 s3client = new AmazonS3Client(awsCredentials);
